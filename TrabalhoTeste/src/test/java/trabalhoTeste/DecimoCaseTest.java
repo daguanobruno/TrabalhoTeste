@@ -23,6 +23,7 @@ import po.InvoicesPage;
 import po.ItemsPage;
 import po.Login;
 import po.Menu;
+import po.ProfilePage;
 import po.ProfitLossPage;
 import po.TransactionPage;
 import po.VendorsPage;
@@ -31,7 +32,7 @@ import po.VendorsPage;
  *
  * @author Usuario
  */
-public class NonoCaseTest {
+public class DecimoCaseTest {
 
     private WebDriver driver = new ChromeDriver();
 
@@ -53,7 +54,7 @@ public class NonoCaseTest {
     }
 
     @Test
-    public void DeletarItem() {
+    public void MudarIdioma() {
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);
 
@@ -61,18 +62,23 @@ public class NonoCaseTest {
                 setSenha("utfpr").
                 Logar();
 
-        ItemsPage Item = homePage.getMenu().goToIncomes().goToItems();
-
-        try {
-            Item.clickButton().clickDeleteButton();
-            Thread.sleep(3000);
-            Item.clickConfirmarExclusao();
-        } catch (Exception e) {
-            System.out.println("Deu erro!");
-        }
+        ProfilePage profile = homePage.getMenu().goToProfile().goToProfileButtom();
         
-        String mensagem = Item.setMensagemAviso();
-        assertEquals("Warning: You are not allowed to delete Moto G5s Plus because it has 1 invoice related.",
-                mensagem);
+        profile.setNome("teste2@teste.com").
+                setSenha("utfpr").
+                setConfirmarSenha("utfpr").
+                clickVerIdioma().
+                clickIdioma().
+                clickSave();
+        
+        ProfilePage profile2 = homePage.getMenu().goToProfile().goToProfileButtom();
+
+        profile.setNome("teste2@teste.com").
+                setSenha("utfpr").
+                setConfirmarSenha("utfpr").
+                clickVerIdioma().
+                clickIdioma2().
+                clickSave();
+        
     }
 }
