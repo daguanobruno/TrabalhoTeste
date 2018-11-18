@@ -48,7 +48,8 @@ public class TerceiroCaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    //@Test
+    // Este caso de Teste não Funciona! Ele trava ao preencher o campo "Prices"
+    //@Test 
     public void ItemCadastradoComSucesso() {
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);
@@ -62,7 +63,7 @@ public class TerceiroCaseTest {
         AddInvoices addInvoices = invoices.clickFindButton();
 
         try {
-
+            //Caso não tenha nenhum Vendedor Cadastrado
             addInvoices.clickNewCustomer().
                     setNome("Bruno").
                     setEmail("bruno_daguano@hotmail.com").
@@ -71,6 +72,7 @@ public class TerceiroCaseTest {
                     clickSaveCustomr();
             Thread.sleep(3000);
 
+            //Cadastro da Fatura
             addInvoices.
                     clickDayInvoice("2018-10-20").
                     clickDayDue("2018-10-30").

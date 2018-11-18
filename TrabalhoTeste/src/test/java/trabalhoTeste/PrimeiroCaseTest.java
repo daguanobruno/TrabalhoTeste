@@ -72,7 +72,7 @@ public class PrimeiroCaseTest {
         assertEquals("Vendor added!", mensagem);
     }
 
-    //@Test
+    @Test
     public void EmailCadastrado() {
 
         HomePage homePage = new HomePage(driver);

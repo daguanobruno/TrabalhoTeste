@@ -79,7 +79,7 @@ public class SegundoCaseTest {
 
     }
 
-    //@Test
+    @Test
     public void ErroNoCadastro() {
 
         HomePage homePage = new HomePage(driver);
