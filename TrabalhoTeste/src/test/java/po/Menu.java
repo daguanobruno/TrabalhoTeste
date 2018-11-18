@@ -91,9 +91,9 @@ public class Menu extends BasePage{
         return new Menu(driver);
     }
     
-    public Menu goToCustomers() {
+    public CostumersPage goToCustomers() {
         clickMenuOption(customers);
-        return new Menu(driver);
+        return new CostumersPage(driver);
     }
     
     public Menu goToReports() {

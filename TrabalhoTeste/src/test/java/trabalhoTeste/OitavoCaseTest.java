@@ -17,6 +17,7 @@ import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
 import po.CategoriesPage;
+import po.CostumersPage;
 import po.HomePage;
 import po.InvoicesPage;
 import po.ItemsPage;
@@ -30,7 +31,7 @@ import po.VendorsPage;
  *
  * @author Usuario
  */
-public class SetimoCaseTest {
+public class OitavoCaseTest {
 
     private WebDriver driver = new ChromeDriver();
 
@@ -52,7 +53,7 @@ public class SetimoCaseTest {
     }
 
     @Test
-    public void SelecionarDespesas() {
+    public void VerificarFatura() {
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);
 
@@ -60,8 +61,12 @@ public class SetimoCaseTest {
                 setSenha("utfpr").
                 Logar();
 
-        TransactionPage transaction = homePage.getMenu().goToBanking().goToTransaction();
-        transaction.clickExpense().clickFilter();
+        CostumersPage costumers = homePage.getMenu().goToIncomes().goToCustomers();
+        String mensagem = costumers.clickFilter().setVerificarFatura();
+        
+        assertEquals("$2,698.00", mensagem);
+
+        
     }
 
 }
