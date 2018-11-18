@@ -12,6 +12,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class Menu extends BasePage{
     
+    
+    @FindBy(xpath = "/html/body/div[1]/aside/div/section/ul[2]/li[2]/a")
+    WebElement items;
+    
     @FindBy(xpath = "/html/body/div/header/a/span[2]/b")
     WebElement akuaunting;
     
@@ -34,6 +38,11 @@ public class Menu extends BasePage{
     public Menu goToIncomes() {
         clickMenuOption(incomes);
         return new Menu(driver);
+    }
+    
+     public ItemsPage goToItems() {
+        clickMenuOption(items);
+        return new ItemsPage(driver);
     }
     
      public VendorsPage goToVendors() {

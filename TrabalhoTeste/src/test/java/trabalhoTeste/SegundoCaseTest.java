@@ -12,9 +12,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
 import po.HomePage;
+import po.ItemsPage;
 import po.Login;
 import po.Menu;
 import po.VendorsPage;
@@ -23,7 +25,7 @@ import po.VendorsPage;
  *
  * @author Usuario
  */
-public class PrimeiroCaseTest {
+public class SegundoCaseTest {
 
     private WebDriver driver = new ChromeDriver();
 
@@ -45,7 +47,7 @@ public class PrimeiroCaseTest {
     }
 
     //@Test
-    public void CadastroComSucesso() {
+    public void ItemCadastradoComSucesso() {
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);
 
@@ -53,24 +55,28 @@ public class PrimeiroCaseTest {
                 setSenha("utfpr").
                 Logar();
 
-        VendorsPage vendors = homePage.getMenu().goToExpenses().goToVendors();
+        ItemsPage items = homePage.getMenu().goToItems();
 
-        AddVendors addVendors = vendors.clickFindButton();
-        addVendors.setNome("Bruno").
-                setEmail("bruno_daguano@hotmail.com").
-                setTax_Number("1").
-                clickCurrenctButton().
-                clickUsDollarButton().
-                setPhone("1234567890").
-                setWebSite("www.daguano.com").
-                setAddress("").
-                clickEnabledButton().
-                clickSaveButton();
+        AddItems addItems = items.clickFindButton();
+
+        addItems.setNome("Moto G5s Plus").
+                setSKU("1").
+                setDescricao("Smartphone\n Motorola Moto G5s Plus 32GB - Platinum Dual Chip\n"
+                        + "4G Câm. Duo 13MP + 13MP").
+                setSalePrice("1349").
+                setPurchasePrice("1200").
+                setQuantidade("50").
+                clickSpinnerTax().
+                clickTaxButton().
+                clickSpinnerCategory().
+                clickGeneral().
+                clickEnabled().
+                clickSave();
 
         //FALTA A VALIDAÇÂO   
     }
 
-    //@Test
+    @Test
     public void ErroNoCadastro() {
 
         HomePage homePage = new HomePage(driver);
@@ -80,23 +86,27 @@ public class PrimeiroCaseTest {
                 setSenha("utfpr").
                 Logar();
 
-        VendorsPage vendors = homePage.getMenu().goToExpenses().goToVendors();
+        ItemsPage items = homePage.getMenu().goToItems();
 
-        AddVendors addVendors = vendors.clickFindButton();
-        addVendors.setNome("Bruno").
-                setEmail("bruno_daguano%hotmail.com").
-                setTax_Number("2").
-                clickCurrenctButton().
-                clickUsDollarButton().
-                setPhone("1234567890").
-                setWebSite("www.daguano.com").
-                setAddress("").
-                clickEnabledButton().
-                clickSaveButton();
+        AddItems addItems = items.clickFindButton();
 
-        String mensagem = addVendors.setErrorMessage();
+        addItems.setNome("Moto G5s Plus").
+                setSKU("1").
+                setDescricao("Smartphone\n Motorola Moto G5s Plus 32GB - Platinum Dual Chip\n"
+                        + "4G Câm. Duo 13MP + 13MP").
+                setSalePrice("1349").
+                setPurchasePrice("1200").
+                setQuantidade("50").
+                clickSpinnerTax().
+                clickTaxButton().
+                clickSpinnerCategory().
+                clickGeneral().
+                clickEnabled().
+                clickSave();
 
-        assertEquals("The email must be a valid email address.", mensagem);
+        String mensagem = addItems.setErrorMessage();
+
+        assertEquals("The sku has already been taken.", mensagem);
     }
 
 }

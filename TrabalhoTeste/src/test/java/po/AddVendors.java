@@ -103,7 +103,7 @@ public class AddVendors extends BasePage{
         return new AddVendors(driver);
     }
     
-     public String setErrorMessage() {
+    public String setErrorMessage() {
         return errorMessage.getText();
     }
 }
