@@ -34,6 +34,12 @@ public class Menu extends BasePage{
     @FindBy(xpath = "/html/body/div[1]/aside/div/section/ul[2]/li[4]/ul/li[3]/a")
     WebElement vendors;
     
+    @FindBy(xpath = "/html/body/div/aside/div/section/ul[2]/li[6]/a/span[1]")
+    WebElement reports;
+    
+    @FindBy(xpath = "/html/body/div/aside/div/section/ul[2]/li[6]/ul/li[5]/a/span")
+    WebElement profitLoss;
+    
     @FindBy(xpath = "/html/body/div/aside/div/section/ul[2]/li[7]/a/span[1]")
     WebElement settings;
     
@@ -74,6 +80,16 @@ public class Menu extends BasePage{
         return new Menu(driver);
     }
     
+    public Menu goToReports() {
+        clickMenuOption(reports);
+        return new Menu(driver);
+    }
+    
+    
+    public ProfitLossPage goToProfitLoss() {
+        clickMenuOption(profitLoss);
+        return new ProfitLossPage(driver);
+    }
     public Menu goToSettings() {
         clickMenuOption(settings);
         return new Menu(driver);
