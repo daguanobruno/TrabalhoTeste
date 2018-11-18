@@ -22,6 +22,9 @@ public class Menu extends BasePage{
     @FindBy(xpath = "/html/body/div[1]/aside/div/section/ul[2]/li[3]/a")
     WebElement incomes;
     
+    @FindBy(xpath = "/html/body/div[1]/aside/div/section/ul[2]/li[3]/ul/li[1]/a/span")
+    WebElement invoices;
+    
     @FindBy(xpath = "/html/body/div[1]/aside/div/section/ul[2]/li[3]/ul/li[3]/a")
     WebElement customers;
     
@@ -43,6 +46,11 @@ public class Menu extends BasePage{
      public ItemsPage goToItems() {
         clickMenuOption(items);
         return new ItemsPage(driver);
+    }
+     
+    public InvoicesPage goToInvoices() {
+        clickMenuOption(invoices);
+        return new InvoicesPage(driver);
     }
     
      public VendorsPage goToVendors() {

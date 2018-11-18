@@ -12,9 +12,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import po.AddInvoices;
+import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
 import po.HomePage;
+import po.InvoicesPage;
+import po.ItemsPage;
 import po.Login;
 import po.Menu;
 import po.VendorsPage;
@@ -23,7 +27,7 @@ import po.VendorsPage;
  *
  * @author Usuario
  */
-public class PrimeiroCaseTest {
+public class QuartoCaseTest {
 
     private WebDriver driver = new ChromeDriver();
 
@@ -45,7 +49,7 @@ public class PrimeiroCaseTest {
     }
 
     @Test
-    public void CadastroComSucesso() {
+    public void VerificarFatura() {
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);
 
@@ -53,26 +57,17 @@ public class PrimeiroCaseTest {
                 setSenha("utfpr").
                 Logar();
 
-        VendorsPage vendors = homePage.getMenu().goToExpenses().goToVendors();
+        InvoicesPage invoice = homePage.getMenu().goToIncomes().goToInvoices();
+        AddInvoices add = invoice.clickShowButton();
+        String mensagem = add.setVerificarSku();
 
-        AddVendors addVendors = vendors.clickFindButton();
-        addVendors.setNome("Bruno").
-                setEmail("bruno_daguano@hotmail.com").
-                setTax_Number("1").
-                clickCurrenctButton().
-                clickUsDollarButton().
-                setPhone("1234567890").
-                setWebSite("www.daguano.com").
-                setAddress("").
-                clickEnabledButton().
-                clickSaveButton();
+        assertEquals("SKU: 1", mensagem);
 
-        //FALTA A VALIDAÇÂO   
     }
 
-    //@Test
-    public void ErroNoCadastro() {
-
+    // @Test
+    public void ErroNoSKU() {
+        
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);
 
@@ -80,23 +75,11 @@ public class PrimeiroCaseTest {
                 setSenha("utfpr").
                 Logar();
 
-        VendorsPage vendors = homePage.getMenu().goToExpenses().goToVendors();
+        InvoicesPage invoice = homePage.getMenu().goToIncomes().goToInvoices();
+        AddInvoices add = invoice.clickShowButton();
+        String mensagem = add.setVerificarSku();
 
-        AddVendors addVendors = vendors.clickFindButton();
-        addVendors.setNome("Bruno").
-                setEmail("bruno_daguano%hotmail.com").
-                setTax_Number("2").
-                clickCurrenctButton().
-                clickUsDollarButton().
-                setPhone("1234567890").
-                setWebSite("www.daguano.com").
-                setAddress("").
-                clickEnabledButton().
-                clickSaveButton();
-
-        String mensagem = addVendors.setErrorMessage();
-
-        assertEquals("The email must be a valid email address.", mensagem);
+        assertEquals("SKU: 10", mensagem);
     }
 
 }
