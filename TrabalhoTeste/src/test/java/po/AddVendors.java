@@ -40,6 +40,9 @@ public class AddVendors extends BasePage{
     @FindBy(xpath = "/html/body/div/div/section[2]/div/form/div[2]/div/div/button")
     WebElement save;
     
+    @FindBy(xpath = "/html/body/div/div/section[2]/div[1]")
+    WebElement message;
+    
     @FindBy(xpath = "/html/body/div/div/section[2]/div/form/div[1]/div[2]/p")
     WebElement errorMessage;
     
@@ -101,6 +104,10 @@ public class AddVendors extends BasePage{
     public AddVendors clickSaveButton() {
         save.click();
         return new AddVendors(driver);
+    }
+    
+    public String setMessage() {
+        return message.getText();
     }
     
     public String setErrorMessage() {

@@ -12,7 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import po.AddInvoices;
 import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
@@ -49,7 +48,7 @@ public class QuintoCaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    //@Test
+    @Test
     public void AlterarCor() {
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);
@@ -62,8 +61,9 @@ public class QuintoCaseTest {
         
         categories.clickGeneral().setColour("#0b0c0d").clickSave();
         
+        String mensagem = categories.setMessage();
         
-        //Falta mensagem de Sucesso
+        assertEquals("Category updated!", mensagem);
 
     }
 
@@ -80,6 +80,9 @@ public class QuintoCaseTest {
         CategoriesPage categories = homePage.getMenu().goToSettings().goToCategories();
         
         categories.clickGeneral().setColour("#/*/*/*/*/*/").clickSave();
+        
+        String mensagem = categories.setMessage();
+        
+        assertEquals("Category updated!", mensagem);
     }
-
 }

@@ -65,7 +65,7 @@ public class QuartoCaseTest {
 
     }
 
-    // @Test
+    //@Test
     public void ErroNoSKU() {
         
         HomePage homePage = new HomePage(driver);

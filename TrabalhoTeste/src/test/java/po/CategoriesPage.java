@@ -23,6 +23,9 @@ public class CategoriesPage extends AkauntingPage{
     
     @FindBy(xpath = "/html/body/div[1]/div/section[2]/div/form/div[2]/div/div/button")
     WebElement save;
+    
+    @FindBy(xpath = "/html/body/div/div/section[2]/div[1]")
+    WebElement message;
             
     public CategoriesPage(WebDriver driver) {
         super(driver);
@@ -42,5 +45,9 @@ public class CategoriesPage extends AkauntingPage{
     public CategoriesPage clickSave() {
         save.click();
         return new CategoriesPage(driver);
+    }
+    
+     public String setMessage() {
+        return message.getText();
     }
 }

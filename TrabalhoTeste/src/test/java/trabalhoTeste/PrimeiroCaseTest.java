@@ -67,11 +67,13 @@ public class PrimeiroCaseTest {
                 clickEnabledButton().
                 clickSaveButton();
 
-        //FALTA A VALIDAÇÂO   
+        String mensagem = addVendors.setMessage();
+
+        assertEquals("Vendor added!", mensagem);
     }
 
     //@Test
-    public void ErroNoCadastro() {
+    public void EmailCadastrado() {
 
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);

@@ -22,28 +22,16 @@ public class AddInvoices extends BasePage{
     @FindBy(xpath = "//*[@id=\"tax_number\"]")
     WebElement taxNumber;
     
-    @FindBy(xpath = "//*[@id=\"select2-currency_code-container\"]")
-    WebElement sppinerSelect;
-    
-    @FindBy(xpath = "//*[@id=\"form-create-customer\"]/div/div[4]/div/span/span[1]/span")
-    WebElement usDollar;
-    
     @FindBy(xpath = "//*[@id=\"address\"]")
     WebElement address;
     
     @FindBy(xpath = "//*[@id=\"button-create-customer\"]")
     WebElement saveCustomer;
-    
+        
     @FindBy(xpath = "//*[@id=\"invoiced_at\"]")
-    WebElement invoiceData;
-    
-    @FindBy(xpath = "/html/body/div[2]/div[1]/table/thead/tr[1]/th[1]")
     WebElement selectDayInvoice;
     
     @FindBy(xpath = "//*[@id=\"due_at\"]")
-    WebElement dueData;
-    
-    @FindBy(xpath = "@FindBy(xpath = \"/html/body/div[2]/div[1]/table/tbody/tr[1]/td[3]\")\n")
     WebElement selectDayDue;
     
     @FindBy(xpath = "//*[@id=\"order_number\"]")
@@ -51,9 +39,6 @@ public class AddInvoices extends BasePage{
     
     @FindBy(xpath = "//*[@id=\"item-name-0\"]")
     WebElement itemsName;
-    
-    @FindBy(xpath = "//*[@id=\"item-row-0\"]/td[2]/ul/li/a")
-    WebElement item;
     
     @FindBy(xpath = "//*[@id=\"item-quantity-0\"]")
     WebElement quantity;
@@ -82,6 +67,12 @@ public class AddInvoices extends BasePage{
     @FindBy(xpath = "/html/body/div/div/section[2]/div[1]/section/div[4]/div/table/tbody/tr[2]/td[1]/small")
     WebElement verificarSku;
     
+    @FindBy(xpath = "/html/body/div/div/section[2]/div[2]/section/div[4]/div/table/tbody/tr[2]/td[1]/text()")
+    WebElement produto;
+    
+    @FindBy(xpath = "/html/body/div/div/section[2]/div[2]/section/div[4]/div/table/tbody/tr[2]/td[4]")
+    WebElement valor;
+    
     public AddInvoices(WebDriver driver) {
         super(driver);
     }
@@ -109,16 +100,6 @@ public class AddInvoices extends BasePage{
         return this;
     }
     
-    /*public AddInvoices clickSppinerSelect() {
-        sppinerSelect.click();
-        return new AddInvoices(driver);
-    }
-      
-    public AddInvoices clickUsDollar() {
-        usDollar.click();
-        return new AddInvoices(driver);
-    }
-    */
     public AddInvoices setAddress(String endereco) {
         address.clear();
         address.sendKeys(endereco);
@@ -130,25 +111,18 @@ public class AddInvoices extends BasePage{
         return new AddInvoices(driver);
     }
     
-    public AddInvoices clickInvoiceData() {
-        invoiceData.click();
-        return new AddInvoices(driver);
+    public AddInvoices clickDayInvoice(String data) {
+        selectDayInvoice.clear();
+        selectDayInvoice.sendKeys(data);
+        return this;
     }
     
-    public AddInvoices clickDayInvoice() {
-        selectDayInvoice.click();
-        return new AddInvoices(driver);
-    }
+     public AddInvoices clickDayDue(String data) {
+        selectDayDue.clear();
+        selectDayDue.sendKeys(data);
+        return this;
+     }
     
-    public AddInvoices clickDueData() {
-        dueData.click();
-        return new AddInvoices(driver);
-    }
-    
-    public AddInvoices clickDayDue() {
-        selectDayDue.click();
-        return new AddInvoices(driver);
-    }
     
     public AddInvoices setOrderNumber(String number) {
         orderNumber.clear();
@@ -162,10 +136,6 @@ public class AddInvoices extends BasePage{
         return this;
     }
  
-    public AddInvoices clickItem() {
-        item.click();
-        return new AddInvoices(driver);
-    }
     
     public AddInvoices setQuantity(String quantidade) {
         quantity.clear();
@@ -173,12 +143,10 @@ public class AddInvoices extends BasePage{
         return this;
     }
     
-    /*
     public AddInvoices setPrice(String preco) {
-        prices.clear();
         prices.sendKeys(preco);
         return this;
-    }*/
+    }
     
      public AddInvoices clickSppinerTax() {
         sppinerTax.click();
@@ -211,7 +179,15 @@ public class AddInvoices extends BasePage{
         return new AddInvoices(driver);
     }
     
+    public String setProduto() {
+        return produto.getText();
+    }
+    
     public String setVerificarSku() {
         return verificarSku.getText();
+    }
+    
+    public String setValor() {
+        return valor.getText();
     }
 }

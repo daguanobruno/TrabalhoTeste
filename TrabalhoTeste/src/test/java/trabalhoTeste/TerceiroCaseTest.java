@@ -48,7 +48,7 @@ public class TerceiroCaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
+    //@Test
     public void ItemCadastradoComSucesso() {
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);
@@ -58,39 +58,46 @@ public class TerceiroCaseTest {
                 Logar();
 
         InvoicesPage invoices = homePage.getMenu().goToIncomes().goToInvoices();
-        
+
         AddInvoices addInvoices = invoices.clickFindButton();
 
-       /* addInvoices.clickNewCustomer().
-                setNome("Bruno").
-                setEmail("bruno_daguano@hotmail.com").
-                setTaxNumber("1").
-                //clickSppinerSelect().
-                //clickUsDollar().
-                setAddress("").
-                clickSaveCustomr();
-         */       
-        addInvoices.
-                clickInvoiceData().
-                clickDayInvoice().
-                clickDueData().
-                clickDayDue().
-                setOrderNumber("1").
-                setItemsName("Moto G").
-                clickItem().
-                setQuantity("2").
-                clickSppinerTax().
-                clickTax().
-                setNotes("").
-                clickSppinerCategory().
-                clickDeposit().
-                clickSave();
-    
+        try {
 
-        //FALTA A VALIDAÇÂO   
+            addInvoices.clickNewCustomer().
+                    setNome("Bruno").
+                    setEmail("bruno_daguano@hotmail.com").
+                    setTaxNumber("1").
+                    setAddress("").
+                    clickSaveCustomr();
+            Thread.sleep(3000);
+
+            addInvoices.
+                    clickDayInvoice("2018-10-20").
+                    clickDayDue("2018-10-30").
+                    setOrderNumber("1");
+            Thread.sleep(3000);
+            
+            addInvoices.setItemsName("Moto G5s Plus (1)").
+                    setQuantity("2").
+                    setPrice("1349").
+                    setNotes("").
+                    clickSppinerCategory().
+                    clickDeposit().
+                    clickSave();
+
+        } catch (Exception e) {
+            System.out.println("Deu erro!");
+        }
+        
+        String produto = addInvoices.setProduto();
+        String valor = addInvoices.setValor();
+        
+        assertEquals("Moto G5s Plus", produto);
+        assertEquals("$1,349.00", valor);
+        
     }
 
-    //@Test
+    @Test
     public void ErroNoCadastro() {
 
         HomePage homePage = new HomePage(driver);

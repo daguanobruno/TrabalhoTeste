@@ -46,7 +46,7 @@ public class SegundoCaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    //@Test
+    @Test
     public void ItemCadastradoComSucesso() {
         HomePage homePage = new HomePage(driver);
         Login login = new Login(driver);
@@ -60,7 +60,7 @@ public class SegundoCaseTest {
         AddItems addItems = items.clickFindButton();
 
         addItems.setNome("Moto G5s Plus").
-                setSKU("1").
+                setSKU("5").
                 setDescricao("Smartphone\n Motorola Moto G5s Plus 32GB - Platinum Dual Chip\n"
                         + "4G Câm. Duo 13MP + 13MP").
                 setSalePrice("1349").
@@ -73,10 +73,13 @@ public class SegundoCaseTest {
                 clickEnabled().
                 clickSave();
 
-        //FALTA A VALIDAÇÂO   
+        String mensagem = addItems.setMessage();
+
+        assertEquals("Item added!", mensagem);
+
     }
 
-    @Test
+    //@Test
     public void ErroNoCadastro() {
 
         HomePage homePage = new HomePage(driver);

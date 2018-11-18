@@ -71,7 +71,10 @@ public class DecimoCaseTest {
                 clickIdioma().
                 clickSave();
         
-        ProfilePage profile2 = homePage.getMenu().goToProfile().goToProfileButtom();
+        String mensagem = profile.setMensagem();
+        assertEquals("User updated!", mensagem);
+        
+        profile = homePage.getMenu().goToProfile().goToProfileButtom();
 
         profile.setNome("teste2@teste.com").
                 setSenha("utfpr").
@@ -80,5 +83,7 @@ public class DecimoCaseTest {
                 clickIdioma2().
                 clickSave();
         
-    }
+        String mensagem2 = profile.setMensagem();
+        assertEquals("Usuário atualizado!", mensagem2);
+   }
 }

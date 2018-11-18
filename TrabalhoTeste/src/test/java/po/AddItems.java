@@ -51,6 +51,9 @@ public class AddItems extends BasePage{
     @FindBy(xpath = "/html/body/div/div/section[2]/div/form/div[2]/div/div/button")
     WebElement save;
     
+    @FindBy(xpath = "/html/body/div/div/section[2]/div[1]")
+    WebElement message;
+    
     @FindBy(xpath = "/html/body/div/div/section[2]/div/form/div[1]/div[2]/p")
     WebElement errorMessage;
     
@@ -122,6 +125,10 @@ public class AddItems extends BasePage{
     public AddItems clickSave() {
         save.click();
         return new AddItems(driver);
+    }
+    
+    public String setMessage() {
+        return message.getText();
     }
     
     public String setErrorMessage() {

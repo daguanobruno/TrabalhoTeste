@@ -37,7 +37,7 @@ public class ProfilePage extends AkauntingPage{
     WebElement save;
     
     @FindBy(xpath = "/html/body/div/div/section[2]/div[1]")
-    WebElement mensagem2;
+    WebElement mensagem;
     
     public ProfilePage(WebDriver driver) {
         super(driver);
@@ -79,6 +79,10 @@ public class ProfilePage extends AkauntingPage{
     public ProfilePage clickSave() {
         save.click();
         return new ProfilePage(driver);
+    }
+    
+    public String setMensagem() {
+        return mensagem.getText();
     }
      
 }

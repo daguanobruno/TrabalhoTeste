@@ -70,7 +70,7 @@ public class NonoCaseTest {
         } catch (Exception e) {
             System.out.println("Deu erro!");
         }
-        
+
         String mensagem = Item.setMensagemAviso();
         assertEquals("Warning: You are not allowed to delete Moto G5s Plus because it has 1 invoice related.",
                 mensagem);
