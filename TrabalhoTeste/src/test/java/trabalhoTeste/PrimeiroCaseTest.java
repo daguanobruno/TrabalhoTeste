@@ -14,8 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import po.AddVendors;
 import po.AkauntingPage;
-import po.HomePage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.VendorsPage;
 
@@ -44,16 +43,15 @@ public class PrimeiroCaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
+    //@Test
     public void CadastroComSucesso() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        VendorsPage vendors = homePage.getMenu().goToExpenses().goToVendors();
+        VendorsPage vendors = login.getMenu().goToExpenses().goToVendors();
 
         AddVendors addVendors = vendors.clickFindButton();
         addVendors.setNome("Bruno").
@@ -72,17 +70,47 @@ public class PrimeiroCaseTest {
         assertEquals("Vendor added!", mensagem);
     }
 
-    @Test
+    //@Test
     public void EmailCadastrado() {
 
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
+
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        VendorsPage vendors = homePage.getMenu().goToExpenses().goToVendors();
+        VendorsPage vendors = login.getMenu().goToExpenses().goToVendors();
+
+        AddVendors addVendors = vendors.clickFindButton();
+        addVendors.setNome("Bruno").
+                setEmail("bruno_daguano@hotmail.com").
+                setTax_Number("2").
+                clickCurrenctButton().
+                clickUsDollarButton().
+                setPhone("1234567890").
+                setWebSite("www.daguano.com").
+                setAddress("").
+                clickEnabledButton().
+                clickSaveButton();
+
+        String mensagem = addVendors.setErrorMessage();
+
+        assertEquals("The email has already been taken.", mensagem);
+    }
+    
+    
+    //@Test
+    public void EmailInvalido() {
+
+        LoginPage login = new LoginPage(driver);
+
+
+        login.setEmail("teste@teste.com").
+                setSenha("utfpr").
+                Logar();
+
+        VendorsPage vendors = login.getMenu().goToExpenses().goToVendors();
 
         AddVendors addVendors = vendors.clickFindButton();
         addVendors.setNome("Bruno").

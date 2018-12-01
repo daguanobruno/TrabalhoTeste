@@ -16,10 +16,9 @@ import po.AddInvoices;
 import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
-import po.HomePage;
 import po.InvoicesPage;
 import po.ItemsPage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.VendorsPage;
 
@@ -51,14 +50,15 @@ public class TerceiroCaseTest {
     // Este caso de Teste não Funciona! Ele trava ao preencher o campo "Prices"
     //@Test 
     public void ItemCadastradoComSucesso() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        
+        LoginPage login = new LoginPage(driver);
+
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        InvoicesPage invoices = homePage.getMenu().goToIncomes().goToInvoices();
+        InvoicesPage invoices = login.getMenu().goToIncomes().goToInvoices();
 
         AddInvoices addInvoices = invoices.clickFindButton();
 
@@ -80,7 +80,7 @@ public class TerceiroCaseTest {
             Thread.sleep(3000);
             
             addInvoices.setItemsName("Moto G5s Plus (1)").
-                    setQuantity("2").
+                    setQuantity("1").
                     setPrice("1349").
                     setNotes("").
                     clickSppinerCategory().
@@ -102,14 +102,13 @@ public class TerceiroCaseTest {
     @Test
     public void ErroNoCadastro() {
 
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        ItemsPage items = homePage.getMenu().goToItems();
+        ItemsPage items = login.getMenu().goToItems();
 
         AddItems addItems = items.clickFindButton();
 

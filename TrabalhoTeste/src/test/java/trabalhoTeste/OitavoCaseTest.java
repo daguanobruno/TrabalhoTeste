@@ -18,10 +18,9 @@ import po.AddVendors;
 import po.AkauntingPage;
 import po.CategoriesPage;
 import po.CostumersPage;
-import po.HomePage;
 import po.InvoicesPage;
 import po.ItemsPage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.ProfitLossPage;
 import po.TransactionPage;
@@ -54,19 +53,15 @@ public class OitavoCaseTest {
 
     @Test
     public void VerificarFatura() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        CostumersPage costumers = homePage.getMenu().goToIncomes().goToCustomers();
-        String mensagem = costumers.clickFilter().setVerificarFatura();
-        
+        CostumersPage costumers = login.getMenu().goToIncomes().goToCustomers();
+        String mensagem = costumers.clickFilter().getVerificarFatura();
+
         assertEquals("$2,698.00", mensagem);
-
-        
     }
-
 }

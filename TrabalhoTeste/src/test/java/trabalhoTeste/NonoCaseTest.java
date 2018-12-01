@@ -18,10 +18,9 @@ import po.AddVendors;
 import po.AkauntingPage;
 import po.CategoriesPage;
 import po.CostumersPage;
-import po.HomePage;
 import po.InvoicesPage;
 import po.ItemsPage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.ProfitLossPage;
 import po.TransactionPage;
@@ -54,14 +53,14 @@ public class NonoCaseTest {
 
     @Test
     public void DeletarItem() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+       
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        ItemsPage Item = homePage.getMenu().goToIncomes().goToItems();
+        ItemsPage Item = login.getMenu().goToIncomes().goToItems();
 
         try {
             Item.clickButton().clickDeleteButton();

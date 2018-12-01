@@ -18,10 +18,9 @@ import po.AddVendors;
 import po.AkauntingPage;
 import po.CategoriesPage;
 import po.CostumersPage;
-import po.HomePage;
 import po.InvoicesPage;
 import po.ItemsPage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.ProfilePage;
 import po.ProfitLossPage;
@@ -55,26 +54,25 @@ public class DecimoCaseTest {
 
     @Test
     public void MudarIdioma() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        ProfilePage profile = homePage.getMenu().goToProfile().goToProfileButtom();
-        
+        ProfilePage profile = login.getMenu().goToProfile().goToProfileButtom();
+
         profile.setNome("teste2@teste.com").
                 setSenha("utfpr").
                 setConfirmarSenha("utfpr").
                 clickVerIdioma().
                 clickIdioma().
                 clickSave();
-        
+
         String mensagem = profile.setMensagem();
         assertEquals("User updated!", mensagem);
-        
-        profile = homePage.getMenu().goToProfile().goToProfileButtom();
+
+        profile = login.getMenu().goToProfile().goToProfileButtom();
 
         profile.setNome("teste2@teste.com").
                 setSenha("utfpr").
@@ -82,8 +80,8 @@ public class DecimoCaseTest {
                 clickVerIdioma().
                 clickIdioma2().
                 clickSave();
-        
+
         String mensagem2 = profile.setMensagem();
         assertEquals("Usuário atualizado!", mensagem2);
-   }
+    }
 }

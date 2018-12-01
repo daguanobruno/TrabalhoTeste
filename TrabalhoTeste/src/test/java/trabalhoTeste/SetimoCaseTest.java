@@ -16,10 +16,9 @@ import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
 import po.CategoriesPage;
-import po.HomePage;
 import po.InvoicesPage;
 import po.ItemsPage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.ProfitLossPage;
 import po.TransactionPage;
@@ -52,15 +51,25 @@ public class SetimoCaseTest {
 
     @Test
     public void SelecionarDespesas() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        TransactionPage transaction = homePage.getMenu().goToBanking().goToTransaction();
+        TransactionPage transaction = login.getMenu().goToBanking().goToTransaction();
         transaction.clickExpense().clickFilter();
+
+        String mensagem = "";
+
+        try {
+            mensagem = transaction.setMessage();
+            assertEquals(mensagem, "Transfer");
+        } catch (Exception e) {
+            mensagem = "Nenhuma Transferência realizada";
+            System.err.println(mensagem);
+        }
     }
 
 }

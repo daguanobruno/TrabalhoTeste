@@ -30,7 +30,7 @@ public class CostumersPage extends AkauntingPage{
         return new CostumersPage(driver);
     }
     
-    public String setVerificarFatura() {
+    public String getVerificarFatura() {
         return fatura.getText();
     }
     

@@ -132,13 +132,12 @@ public class Menu extends BasePage{
         return new ProfilePage(driver);
     }  
     
-    public HomePage goToHome() {
+    public LoginPage goToLoginHome() {
         clickMenuOption(akuaunting);
-        return new HomePage(driver);
+        return new LoginPage(driver);
     }    
     
     private void clickMenuOption(WebElement menuOption) {
-       
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until( ExpectedConditions.elementToBeClickable(menuOption) );
         menuOption.click();

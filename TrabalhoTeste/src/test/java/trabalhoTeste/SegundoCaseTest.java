@@ -15,9 +15,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
-import po.HomePage;
 import po.ItemsPage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.VendorsPage;
 
@@ -46,21 +45,21 @@ public class SegundoCaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
+    //@Test
     public void ItemCadastradoComSucesso() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
+
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        ItemsPage items = homePage.getMenu().goToItems();
+        ItemsPage items = login.getMenu().goToItems();
 
         AddItems addItems = items.clickFindButton();
 
         addItems.setNome("Moto G5s Plus").
-                setSKU("5").
+                setSKU("1").
                 setDescricao("Smartphone\n Motorola Moto G5s Plus 32GB - Platinum Dual Chip\n"
                         + "4G Câm. Duo 13MP + 13MP").
                 setSalePrice("1349").
@@ -79,17 +78,16 @@ public class SegundoCaseTest {
 
     }
 
-    @Test
+    //@Test
     public void ErroNoCadastro() {
 
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        ItemsPage items = homePage.getMenu().goToItems();
+        ItemsPage items = login.getMenu().goToItems();
 
         AddItems addItems = items.clickFindButton();
 

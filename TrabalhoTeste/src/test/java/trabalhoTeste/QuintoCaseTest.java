@@ -16,10 +16,9 @@ import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
 import po.CategoriesPage;
-import po.HomePage;
 import po.InvoicesPage;
 import po.ItemsPage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.VendorsPage;
 
@@ -48,16 +47,16 @@ public class QuintoCaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
+    //@Test
     public void AlterarCor() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        CategoriesPage categories = homePage.getMenu().goToSettings().goToCategories();
+        CategoriesPage categories = login.getMenu().goToSettings().goToCategories();
         
         categories.clickGeneral().setColour("#0b0c0d").clickSave();
         
@@ -67,17 +66,16 @@ public class QuintoCaseTest {
 
     }
 
-    @Test
+    //@Test
     public void CorInexistente() {
         
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        CategoriesPage categories = homePage.getMenu().goToSettings().goToCategories();
+        CategoriesPage categories = login.getMenu().goToSettings().goToCategories();
         
         categories.clickGeneral().setColour("#/*/*/*/*/*/").clickSave();
         

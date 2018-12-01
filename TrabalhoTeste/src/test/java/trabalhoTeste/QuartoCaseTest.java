@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,10 +17,9 @@ import po.AddInvoices;
 import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
-import po.HomePage;
 import po.InvoicesPage;
 import po.ItemsPage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.VendorsPage;
 
@@ -48,16 +48,15 @@ public class QuartoCaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
+    //@Test
     public void VerificarFatura() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        InvoicesPage invoice = homePage.getMenu().goToIncomes().goToInvoices();
+        InvoicesPage invoice = login.getMenu().goToIncomes().goToInvoices();
         AddInvoices add = invoice.clickShowButton();
         String mensagem = add.setVerificarSku();
 
@@ -65,21 +64,20 @@ public class QuartoCaseTest {
 
     }
 
-    //@Test
+    @Test
     public void ErroNoSKU() {
-        
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        InvoicesPage invoice = homePage.getMenu().goToIncomes().goToInvoices();
+        InvoicesPage invoice = login.getMenu().goToIncomes().goToInvoices();
         AddInvoices add = invoice.clickShowButton();
         String mensagem = add.setVerificarSku();
 
-        assertEquals("SKU: 10", mensagem);
+        assertEquals("SKU: 5", mensagem);
     }
 
 }

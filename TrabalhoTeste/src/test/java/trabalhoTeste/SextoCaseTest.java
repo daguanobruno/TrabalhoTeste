@@ -16,10 +16,9 @@ import po.AddItems;
 import po.AddVendors;
 import po.AkauntingPage;
 import po.CategoriesPage;
-import po.HomePage;
 import po.InvoicesPage;
 import po.ItemsPage;
-import po.Login;
+import po.LoginPage;
 import po.Menu;
 import po.ProfitLossPage;
 import po.VendorsPage;
@@ -51,20 +50,17 @@ public class SextoCaseTest {
 
     @Test
     public void Lucro() {
-        HomePage homePage = new HomePage(driver);
-        Login login = new Login(driver);
+        LoginPage login = new LoginPage(driver);
 
         login.setEmail("teste@teste.com").
                 setSenha("utfpr").
                 Logar();
 
-        ProfitLossPage prof = homePage.getMenu().goToReports().goToProfitLoss();
+        ProfitLossPage prof = login.getMenu().goToReports().goToProfitLoss();
         prof.clickAno().clickSelecionarAno();
 
         String mensagem = prof.setLucro();
 
         assertEquals("$0.00", mensagem);
-
     }
-
 }
